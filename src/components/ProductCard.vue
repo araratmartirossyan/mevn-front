@@ -3,18 +3,23 @@
     <div class="card_header">{{ title }} - {{ price }}$</div>
     <div class="banner" :style="`background-image: url(${imageUrl})`"></div>
     <div class="card_footer">
-      <button>Купить</button>
+      <button class="btn btn-info" @click="$emit('add-to-cart')" v-if="!inCart">
+        Добавить в корзину
+      </button>
+      <button class="btn btn-danger" @click="$emit('add-to-cart')" v-else>
+        Убрать из корзины
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ProductCard",
+  name: 'ProductCard',
   props: {
     title: {
       type: String,
-      default: "",
+      default: '',
     },
     price: {
       type: Number,
@@ -22,7 +27,11 @@ export default {
     },
     imageUrl: {
       type: String,
-      default: "",
+      default: '',
+    },
+    inCart: {
+      type: Boolean,
+      default: false,
     },
   },
 };

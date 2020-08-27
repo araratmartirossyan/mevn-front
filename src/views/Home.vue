@@ -7,30 +7,37 @@
         :title="product.title"
         :price="product.price"
         :imageUrl="product.imageUrl"
+        @add-to-cart="addToCart(product)"
+        :inCart="cartItemsIds.includes(product._id)"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    ProductCard: () => import("@/components/ProductCard"),
+    ProductCard: () => import('@/components/ProductCard'),
   },
   mounted() {
     this.fetchProducts();
   },
   computed: {
     ...mapGetters({
-      products: "products",
+      products: 'products',
+      cartItems: 'cartItems',
     }),
+    cartItemsIds: ({ cartItems }) => cartItems.map(({ _id }) => _id),
   },
   methods: {
     ...mapActions({
-      fetchProducts: "fetchProducts",
+      fetchProducts: 'fetchProducts',
+    }),
+    ...mapMutations({
+      addToCart: 'addToCart',
     }),
   },
 };

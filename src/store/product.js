@@ -1,4 +1,4 @@
-import { getProduct, getProducts } from "@/services/products.service";
+import { getProduct, getProducts } from '@/services/products.service';
 
 const mutations = {
   setProduct(state, product) {
@@ -16,17 +16,17 @@ const actions = {
   async fetchProduct({ commit }, id) {
     try {
       const product = await getProduct(id);
-      commit("setProduct", product);
+      commit('setProduct', product);
     } catch (err) {
-      commit("setProductError", err);
+      commit('setProductError', err);
     }
   },
   async fetchProducts({ commit }) {
     try {
       const products = await getProducts();
-      commit("setProducts", products);
+      commit('setProducts', products);
     } catch (err) {
-      commit("setProductError", err);
+      commit('setProductError', err);
     }
   },
 };

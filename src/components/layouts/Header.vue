@@ -4,6 +4,7 @@
       LOGO
     </div>
     <div class="header_right">
+      <router-link to="/cart"> Cart {{ cartCount }} </router-link>
       <ul class="nav">
         <li
           class="nav_link"
@@ -19,11 +20,15 @@
 
 <script>
 export default {
-  name: "MevnHeader",
+  name: 'MevnHeader',
   props: {
     categories: {
       type: Array,
       default: () => [],
+    },
+    cartCount: {
+      type: Number,
+      default: 0,
     },
   },
 };
