@@ -1,21 +1,24 @@
 <template>
-  <div class="home">
-    <div class="product-list">
+  <div class="row">
+    <div
+      v-for="(product, key) in products"
+      :key="key"
+      class="col-lg-4 col-md-6 mb-4"
+    >
       <ProductCard
-        v-for="(product, key) in products"
-        :key="key"
         :title="product.title"
         :price="product.price"
         :imageUrl="product.imageUrl"
         @add-to-cart="addToCart(product)"
         :inCart="cartItemsIds.includes(product._id)"
+        :description="product.description"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'Home',
@@ -23,7 +26,7 @@ export default {
     ProductCard: () => import('@/components/ProductCard'),
   },
   mounted() {
-    this.fetchProducts();
+    this.fetchProducts()
   },
   computed: {
     ...mapGetters({
@@ -40,11 +43,5 @@ export default {
       addToCart: 'addToCart',
     }),
   },
-};
-</script>
-
-<style lang="scss" scoped>
-.product-list {
-  display: flex;
 }
-</style>
+</script>
