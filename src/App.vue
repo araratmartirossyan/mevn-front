@@ -3,18 +3,15 @@
     <MevnHeader :categories="categories" :cartCount="cartCount" />
     <div class="container">
       <div class="row">
-        <div class="col-lg-3">
-          <h1 class="my-4">Categories</h1>
-          <div class="list-group">
-            <router-link
-              v-for="({ id, title }, key) in categories"
-              :key="key"
-              :to="`/category/${id}`"
-              class="list-group-item"
-            >
-              {{ title }}
-            </router-link>
-          </div>
+        <div class="col-lg-3 navigation">
+          <router-link
+            v-for="({ id, title }, key) in categories"
+            :key="key"
+            :to="`/category/${id}`"
+            class="navigation-item"
+          >
+            {{ title }}
+          </router-link>
         </div>
         <div class="col-lg-9 margin-s">
           <router-view />
@@ -53,31 +50,25 @@ body {
   padding-top: 56px;
 }
 .margin-s {
-  margin-top: 95px;
+  margin-top: 20px;
 }
-// body,
-// html {
-//   padding: 0;
-//   margin: 0;
-// }
-// #app {
-//   font-family: Avenir, Helvetica, Arial, sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-//   text-align: center;
-//   color: #2c3e50;
-// }
+.navigation {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(99, 99, 99, 0.18);
+  height: 100vh;
+  position: fixed;
+}
 
-// #nav {
-//   padding: 30px;
+.navigation-item {
+  margin: 0 16px;
+  color: gray;
+  padding: 16px 0;
+}
 
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
+@media only screen and (max-width: 992px) {
+  .navigation {
+    display: none;
+  }
+}
 </style>

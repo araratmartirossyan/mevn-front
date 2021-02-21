@@ -1,6 +1,6 @@
-import { request } from './generic.service';
+import { request } from './generic.service'
 
 const getPaymentIntent = data =>
-  request({ url: `payment`, method: 'post', data });
+  request({ url: `payment`, method: 'post', data })
 
-export { getPaymentIntent };
+export { getPaymentIntent }
